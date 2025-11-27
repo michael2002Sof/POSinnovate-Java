@@ -13,14 +13,17 @@ import inventory.controllers.ProductController;
 import inventory.controllers.SolicitudController;
 
 // ------------------ VENTAS ------------------
-
+import sale.controllers.SaleController;
+import sale.models.Sale;
 
 // ------------------ FINANZAS ------------------
+import finance.controllers.FinanceController;
+import finance.models.FinancialMovement;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SystemApp {
 
