@@ -3,7 +3,7 @@ package sale.controllers;
 import sale.models.Sale;
 import sale.models.SaleItem;
 import inventory.models.Producto;
-import sistema.Sistema; // AJUSTA ESTE IMPORT según tu paquete real
+import system.SystemApp;   
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,17 +13,14 @@ import java.util.Scanner;
 
 public class SaleController {
 
-    private Sistema system;
+    private SystemApp system;
     private Scanner scanner;
 
-    public SaleController(Sistema system) {
+    public SaleController(SystemApp system) {
         this.system = system;
-        this.scanner = Sistema.input; // Scanner global
+        this.scanner = SystemApp.input; // Scanner global
     }
 
-    // ===============================================================
-    // RF 3.1 - Registrar venta
-    // ===============================================================
     public void registrarVenta() {
 
         if (system.getProducts().isEmpty()) {
@@ -84,8 +81,7 @@ public class SaleController {
                 }
             }
 
-            SaleItem item = new SaleItem(producto, cantidad, producto.getPrecioVenta());
-            items.add(item);
+            items.add(new SaleItem(producto, cantidad, producto.getPrecioVenta()));
 
             System.out.print("¿Agregar otro producto? (SI/NO): ");
             if (!scanner.nextLine().trim().equalsIgnoreCase("si")) break;
@@ -112,19 +108,15 @@ public class SaleController {
         };
 
         int code = system.getSales().size() + 7001;
-        String fecha = LocalDateTime.now().format(
-                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-        );
+        String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
         Sale venta = new Sale(code, fecha, customer, items, metodoPago);
 
-        // Descontar stock
         for (SaleItem item : items) {
             Producto p = item.getProduct();
             p.setCantidad(p.getCantidad() - item.getQuantity());
         }
 
-        // Guardar venta
         system.getSales().add(venta);
 
         System.out.println("\n============================================================");
@@ -138,17 +130,11 @@ public class SaleController {
         mostrarVoucher(venta);
     }
 
-    // ===============================================================
-    // RF 3.2 - Voucher
-    // ===============================================================
     public void mostrarVoucher(Sale venta) {
         System.out.println();
         System.out.println(venta);
     }
 
-    // ===============================================================
-    // RF 3.3 - Consultar productos
-    // ===============================================================
     public void consultarProductosDisponibles() {
 
         if (system.getProducts().isEmpty()) {
@@ -176,7 +162,7 @@ public class SaleController {
                     System.out.print("Código: ");
                     String codigo = scanner.nextLine().trim();
 
-                    Producto encontrado = system.getProducts().stream()
+                    var encontrado = system.getProducts().stream()
                             .filter(p -> p.getCodigo().equals(codigo))
                             .findFirst()
                             .orElse(null);
@@ -203,9 +189,7 @@ public class SaleController {
                 }
 
                 case "3" -> system.getProducts().forEach(System.out::println);
-
                 case "4" -> { return; }
-
                 default -> System.out.println("Opción inválida.");
             }
         }

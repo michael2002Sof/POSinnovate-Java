@@ -66,14 +66,22 @@ public class SystemApp {
 
 
         // ----------------- MÓDULO VENTAS -----------------
-
+        HashMap<String, Runnable> modVentas = new HashMap<>();
+        modVentas.put("Registrar Venta", () -> controllerSale.registrarVenta());
+        modVentas.put("Consultar Productos Disponibles", () -> controllerSale.consultarProductosDisponibles());
 
         // ----------------- MÓDULO FINANZAS -----------------
+        HashMap<String, Runnable> modFinanzas = new HashMap<>();
+        modFinanzas.put("Reporte Gastos Insumos", () -> controllerFinance.reporteGastosInsumos());
+        modFinanzas.put("Reporte Ingresos Ventas", () -> controllerFinance.reporteIngresosVentas());
+        modFinanzas.put("Historial Movimientos", () -> controllerFinance.historialMovimientos());
 
 
 
         // Registrar todos los módulos en el sistema
         AVAILABLE_MODULES.put("Usuarios", modUsuarios);
+        AVAILABLE_MODULES.put("Ventas", modVentas);
+        AVAILABLE_MODULES.put("Finanzas", modFinanzas);
     }
 
     public static void main(String[] args) {
