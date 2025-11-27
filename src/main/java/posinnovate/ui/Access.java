@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import posinnovate.core.SystemPOS;
 import posinnovate.user.models.User;
-import posinnovate.user.models.Rol;
 import posinnovate.utils.SystemUtils;
 
 public class Access {
@@ -18,8 +17,7 @@ public class Access {
             System.out.println("          SISTEMA POSInnovate");
             System.out.println("========================================");
 
-            boolean adminExists = system.users.stream()
-                .anyMatch(u -> u.getRol() != null && "admin".equalsIgnoreCase(u.getRol().getName()));
+            boolean adminExists = system.users.stream().anyMatch(u -> u.getRol() != null && "admin".equalsIgnoreCase(u.getRol().getName()));
 
             System.out.println("1. Iniciar sesión");
             if (!adminExists) {
