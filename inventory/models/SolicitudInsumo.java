@@ -1,3 +1,5 @@
+package inventory.models;
+
 import java.util.List;
 
 public class SolicitudInsumo {
