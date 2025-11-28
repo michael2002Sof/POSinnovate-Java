@@ -41,14 +41,14 @@ public class Insumo {
 
     @Override
     public String toString() {
-        return "\n================================================================\n" +
-               "Código: " + codigo +
+        return "\n==============================================================================================================\n" +
+               "Fecha registro: " + fechaRegistro + 
+               "\n Código: " + codigo +
                " | Nombre: " + nombre +
                " | Unidad: " + unidadMedida +
                " | Stock actual: " + stockActual +
                " | Stock mínimo: " + stockMinimo +
                " | Costo: " + costo +
-               " | Fecha registro: " + fechaRegistro +
-               "\n================================================================\n";
+               "\n==============================================================================================================";
     }
 }

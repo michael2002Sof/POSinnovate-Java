@@ -34,11 +34,13 @@ public class Solicitud {
 
     @Override
     public String toString() {
-        return "Solicitud #" + id +
-               " | Insumo: " + insumo.getNombre() +
+        return "\n============================================================================\n" +
+                "Solicitud #" + id +
+               "\n Insumo: " + insumo.getNombre() +
                " | Cantidad: " + cantidad +
                " | Solicitado por: " + solicitadoPor +
                " | Estado: " + estado +
-               " | Fecha: " + fechaSolicitud;
+               " | Fecha: " + fechaSolicitud +
+               "\n============================================================================";
     }
 }

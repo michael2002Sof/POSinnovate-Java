@@ -16,15 +16,18 @@ public class SolicitudController {
 
     public void solicitarInsumos() {
         if (system.supplies.isEmpty()) {
-            System.out.println("No hay insumos para solicitar.");
+            System.out.println(" !ADVERTENCIA¡ No hay insumos para solicitar.");
             return;
         }
 
         System.out.println("SOLICITUD DE INSUMOS:");
+        System.out.println("----------------------------------------------");
+        
         for (int i = 0; i < system.supplies.size(); i++) {
             System.out.println((i + 1) + ". " + system.supplies.get(i).getNombre());
         }
-        System.out.print("Seleccione insumo: ");
+        System.out.println("==============================================");
+        System.out.print("\nSeleccione insumo: ");
         int idx;
         try {
             idx = Integer.parseInt(scanner.nextLine().trim()) - 1;
@@ -32,14 +35,28 @@ public class SolicitudController {
             System.out.println("Opción inválida.");
             return;
         }
+
         if (idx < 0 || idx >= system.supplies.size()) {
             System.out.println("Opción inválida.");
             return;
         }
 
         Insumo insumo = system.supplies.get(idx);
+
         System.out.print("Cantidad solicitada: ");
-        double cantidad = Double.parseDouble(scanner.nextLine().trim());
+        double cantidad;
+        try {
+            cantidad = Double.parseDouble(scanner.nextLine().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("Cantidad inválida.");
+            return;
+        }
+
+        if (cantidad <= 0) {
+            System.out.println("La cantidad debe ser mayor a cero.");
+            return;
+        }
+
         System.out.print("Solicitado por (nombre): ");
         String solicitadoPor = scanner.nextLine().trim();
 
@@ -50,7 +67,7 @@ public class SolicitudController {
 
     public void gestionarSolicitudesInventario() {
         if (system.requisitions.isEmpty()) {
-            System.out.println("No hay solicitudes registradas.");
+            System.out.println("¡ADVERTENCIA! No hay solicitudes registradas.");
             return;
         }
 
@@ -89,10 +106,21 @@ public class SolicitudController {
         String opt = scanner.nextLine().trim();
 
         if ("1".equals(opt)) {
-            double nuevoStock = solicitud.getInsumo().getStockActual() + solicitud.getCantidad();
+            double stockActual = solicitud.getInsumo().getStockActual();
+            double cantidad = solicitud.getCantidad();
+
+            // Validar que haya suficiente stock para descontar
+            if (cantidad > stockActual) {
+                System.out.println("No hay stock suficiente. Stock actual: "
+                        + stockActual + " | Cantidad solicitada: " + cantidad);
+                return;
+            }
+
+            double nuevoStock = stockActual - cantidad;
             solicitud.getInsumo().setStockActual(nuevoStock);
             solicitud.setEstado("APROBADA");
-            System.out.println("Solicitud aprobada. Stock actualizado.");
+            System.out.println("Solicitud aprobada. Stock actualizado. Stock restante: " + nuevoStock);
+
         } else if ("2".equals(opt)) {
             solicitud.setEstado("RECHAZADA");
             System.out.println("Solicitud rechazada.");
