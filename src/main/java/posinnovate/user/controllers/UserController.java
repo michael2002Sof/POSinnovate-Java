@@ -15,7 +15,7 @@ public class UserController {
     }
 
     public void registerAdmin() {
-        System.out.println("================================");
+        System.out.println("\n================================");
         System.out.println("REGISTRO DE USUARIO ADMINISTRADOR");
         System.out.println("================================");
 
@@ -31,7 +31,7 @@ public class UserController {
             });
             adminRole = new Rol("admin", fullPermissions);
             system.roles.add(adminRole);
-            System.out.println("Rol 'admin' creado con todos los permisos.");
+            System.out.println("\n!ROL ADMIN FUE CREADO CON TODOS LOS PERMISOS¡\n");
         }
 
         System.out.print("Nombre del admin: ");
@@ -63,11 +63,14 @@ public class UserController {
             return;
         }
 
-        System.out.println("Selección de rol:");
+        System.out.println("\n================================");
+        System.out.println("SELECCION DE ROL:");
+        System.out.println("--------------------------------");
         for (int i = 0; i < system.roles.size(); i++) {
             System.out.println((i + 1) + ". " + system.roles.get(i).getName());
         }
-        System.out.print("Opción: ");
+        System.out.println("================================");
+        System.out.print("\nOpción: ");
         int idx;
         try {
             idx = Integer.parseInt(scanner.nextLine().trim()) - 1;
@@ -102,6 +105,9 @@ public class UserController {
     }
 
     public User loginUser() {
+        System.out.println("\n================================");
+        System.out.println("INICIO DE SESION");
+        System.out.println("================================");
         System.out.print("Correo: ");
         String email = scanner.nextLine().trim();
         System.out.print("Contraseña: ");

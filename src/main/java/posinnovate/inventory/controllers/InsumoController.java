@@ -15,9 +15,9 @@ public class InsumoController {
 
     public void cargarInsumosIniciales() {
         if (!system.supplies.isEmpty()) return;
-        system.supplies.add(new Insumo("I001", "Super", "Litros", 100, 20, 75000, ""));
-        system.supplies.add(new Insumo("I002", "Suelas", "Unidades", 80, 50, 30000, ""));
-        system.supplies.add(new Insumo("I003", "Malla", "Metros", 50, 100, 80000, ""));
+        system.supplies.add(new Insumo("I001", "Super", "litros", 100, 20, 75000, ""));
+        system.supplies.add(new Insumo("I002", "Suelas", "unidades", 80, 50, 30000, ""));
+        system.supplies.add(new Insumo("I003", "Malla", "metros", 50, 100, 80000, ""));
     }
 
     public void registrarInsumos() {

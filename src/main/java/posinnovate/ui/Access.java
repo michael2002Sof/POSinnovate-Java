@@ -24,8 +24,8 @@ public class Access {
                 System.out.println("2. Registrar Admin");
             }
             System.out.println("0. Salir");
-
-            System.out.print("Opción: ");
+            System.out.println("========================================");
+            System.out.print("\nOpción: ");
             String option = scanner.nextLine().trim();
 
             if ("1".equals(option)) {

@@ -15,8 +15,8 @@ public class ProductoController {
 
     public void cargarProductosIniciales() {
         if (!system.products.isEmpty()) return;
-        system.products.add(new Producto("P001", "Nike airmax", 60000, 300));
-        system.products.add(new Producto("P002", "MoyaShoes", 75000, 250));
+        system.products.add(new Producto("P001", "nike airmax", 60000, 300));
+        system.products.add(new Producto("P002", "moyaShoes", 75000, 250));
         system.products.add(new Producto("P003", "adidas sena", 80000, 200));
     }
 

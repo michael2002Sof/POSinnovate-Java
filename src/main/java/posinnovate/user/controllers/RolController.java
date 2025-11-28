@@ -21,13 +21,17 @@ public class RolController {
         List<String> moduleNames = new ArrayList<>(system.AVAILABLE_MODULES.keySet());
         Map<String, List<String>> modulesWithPermissions = new LinkedHashMap<>();
 
-        System.out.println("\nSELECCIÓN DE MÓDULOS PARA EL ROL:");
+        System.out.println("\n================================");
+        System.out.println("SELECCIÓN DE MÓDULOS PARA EL ROL:");
+        System.out.println("================================");
         for (int i = 0; i < moduleNames.size(); i++) {
             System.out.println((i + 1) + ". " + moduleNames.get(i));
         }
+        System.out.println("--------------------------------");
         System.out.println("Ejemplo de selección: 1,3");
+        System.out.println("================================");
 
-        System.out.print("Módulos a asignar: ");
+        System.out.print("\nMódulos a asignar: ");
         String selectedModulesRaw = scanner.nextLine();
         String[] selectedModules = selectedModulesRaw.split(",");
 
@@ -51,13 +55,17 @@ public class RolController {
             };
 
             List<String> moduleOptions = new ArrayList<>(actions.keySet());
-            System.out.println("\nPermisos para módulo: " + moduleName);
+            System.out.println("\n================================");
+            System.out.println("PERMISOS PARA EL MODULO: " + moduleName);
+            System.out.println("================================");
             for (int i = 0; i < moduleOptions.size(); i++) {
                 System.out.println((i + 1) + ". " + moduleOptions.get(i));
             }
+            System.out.println("--------------------------------");
             System.out.println("Ejemplo de selección: 1,2");
 
-            System.out.print("Permisos a asignar: ");
+            System.out.println("================================");
+            System.out.print("\nPermisos a asignar: ");
             String permsRaw = scanner.nextLine();
             String[] selectedPerms = permsRaw.split(",");
 
@@ -77,6 +85,6 @@ public class RolController {
 
         Rol newRole = new Rol(name, modulesWithPermissions);
         system.roles.add(newRole);
-        System.out.println("Rol '" + name + "' registrado correctamente.");
+        System.out.println("!ROL '" + name + "' REGISTRADO CORRECTAMENTE¡");
     }
 }

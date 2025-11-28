@@ -14,12 +14,14 @@ public class Menu {
     public static void showMenu(SystemPOS system, User user, Rol role) {
         while (true) {
             SystemUtils.cleanScreen();
-            System.out.println("\nBIENVENIDO: " + user.getName() + ". ROL: " + role.getName());
             System.out.println("================================");
+            System.out.println("BIENVENIDO: " + user.getName() + ". ROL: " + role.getName());
+            System.out.println("--------------------------------");
             System.out.println("         MENÚ DISPONIBLE        ");
             System.out.println("================================");
 
             Map<String, List<String>> modules = role.getModules();
+            
             if (modules == null || modules.isEmpty()) {
                 System.out.println("Este rol no tiene módulos asignados.");
                 return;
@@ -30,6 +32,7 @@ public class Menu {
                 System.out.println((i + 1) + ". " + moduleNames.get(i));
             }
             System.out.println("0. Cerrar sesión");
+            System.out.println("================================\n");
 
             System.out.print("Seleccione el módulo: ");
             String opt = scanner.nextLine().trim();
@@ -60,13 +63,17 @@ public class Menu {
 
             while (true) {
                 SystemUtils.cleanScreen();
+                System.out.println("================================");
                 System.out.println("MÓDULO: " + moduleName);
+                System.out.println("--------------------------------");
                 System.out.println("Permisos disponibles:");
+                System.out.println("================================");
                 for (int i = 0; i < perms.size(); i++) {
                     System.out.println((i + 1) + ". " + perms.get(i));
                 }
                 System.out.println("0. Volver");
 
+                System.out.println("================================\n");
                 System.out.print("Seleccione una opción: ");
                 String permOpt = scanner.nextLine().trim();
                 if ("0".equals(permOpt)) break;
